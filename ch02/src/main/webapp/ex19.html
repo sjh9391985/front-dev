@@ -1,0 +1,43 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Windows 7과 Mac OSX 비교</title>
+<link rel="stylesheet" type="text/css" href="main.css"/>
+<link rel="stylesheet" type="text/css" href="ex16.css"/>
+<style type="text/css">
+input{
+	background-color: #fff;
+	padding:5px;
+	border: 2px solid #03cf5d;
+	online:none;
+	
+}
+input#user-id {
+	background-color: #fff;
+}
+input#user-id.focused {
+	background-color: #e1e6f6;
+}
+</style>
+<script type="text/javascript">
+function changeBackground(input, className){
+	input.className =  className;
+}
+</script>
+</head>
+<body>
+	<form>
+		<input
+			onfocus='changeBackground(this, "focused");'
+			onblur='changeBackground(this, "");'
+			type="text"
+			id = 'user-id'
+			name="userId"		
+			class="focused"
+		>
+		
+	</form>
+
+</body>
+</html>
