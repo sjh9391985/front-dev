@@ -1,4 +1,5 @@
-/*
+/*  
+    자바스크립트 객체 1 - Object
     1. 자바스크립트 객체는 function 타입과 object 타입 2가지가 있다.
 
     2. 보통 function 타입 객체는 "함수"라고 부른다.
@@ -46,3 +47,9 @@ obj3 = {
     }
 }
 console.log(obj3);
+console.log("================================");
+
+/* XmlHttpRequest 호스트 객체(브라우저) 사용해서 통신을 한다. */
+var response = '{name: "둘리", age: 10, email: "dooly@gmail.com"}'
+var userVo = eval("("+response+")");
+console.log(userVo.name+" : "+userVo.age +" : "+userVo.email);
