@@ -22,5 +22,3 @@ var tabBox = {
 	this.className = "selected";
 	}
 }
-
-
