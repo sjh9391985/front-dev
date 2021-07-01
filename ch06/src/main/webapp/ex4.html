@@ -3,19 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-document.write( "<pre>" );
-
-for(var i = 0; i <= 20; i++ ){
-	for( var j = 0; j < 20-i; j++ ) {
-		document.write( "*" );
-	}
-	document.write( "\n" );
+<script src="browser-detect.js"></script>
+<script>
+let s = "";
+for(property in navigator){
+	s += (property + " : " + navigator[property] +"\n");
 }
+console.log(s);
 
-document.write( "</pre>" );
+BrowserDetect.init();
+console.log(BrowserDetect.browser);
+console.log(BrowserDetect.version);
+console.log(BrowserDetect.os);
 </script>
 </head>
 <body>
+	<h1>DOM(Browser Object Model)</h1>
+	<h2>4. navigator 객체</h2>
+
 </body>
 </html>
