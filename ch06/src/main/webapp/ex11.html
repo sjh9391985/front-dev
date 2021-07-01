@@ -26,14 +26,38 @@
     
     3. Event Listener: DOM Event Model Level2, function(){}
 
-    4. Event Model
-        - DOM의 HTMLElement의 Event Handler를 설정하는 방법에 대한 표준
+    4. Event Model:  DOM의 HTMLElement의 Event Handler를 설정하는 방법에 대한 표준
+    
+    * DOM LEVEL0 EVENT MODEL
+        - Inline Event Model
+        	태그안에 onclick="자바스크립트 코드" 넣는 방식(사용X/ 웹표준에 위배)
+        - Basic Event Model(고전적인 이벤트 처리방식, 기본 이벤트 처리 방식)
+			element.onclick = function(){...}
+    		문제점은 event handler를 하나밖에 세팅을 못한다.
+    
+    * DOM LEVEL2 EVENT MODEL
+    - observer 패턴을 적용하여 Listener(함수, 이벤트핸들러)를 등록하는 방식
+      Listener를 등록하는 함수를 사용 / Listener를 제거하는 함수가 있다.
+	  다중 이벤트 핸들러를 등록할 수 있다.
+	  : MS Internet Explorer( <= vs.8) - attachEvent / detachEvent
+      : Standard(표준) - addEventListner / removeEventListener
+    		
+*/   
+window.addEventListener("load", function(){
+    document.getElementById("header-1").onclick = function(){
+        console.log("Event Model Level0 - Basic")
+    }
 
-*/    
+    document.getElementById("header-2").addEventListener("click", function(){
+        console.log("Event Model Level2");
+    });
+});
 </script>
 </head>
 <body>
 	<h1>DOM Event 처리</h1>
-
+	<h2 onclick='consonle.log("Event Model Level0 - Inline")'>Event Model Level0 - Inline</h2>
+	<h2 id="header-1">Event Model Level0 - Basic</h2>
+	<h2 id="header-2">Event Model Level2</h2>
 </body>
 </html>
