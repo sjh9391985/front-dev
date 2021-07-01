@@ -5,21 +5,34 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
-document.write( "<pre>" );
-
-for(var i = 1; i <= 9; i++ ){
-	for( var j = 1; j <= 9; j++ ) {
-		document.write( j + " x " + i + " = " + j*i );
-		document.write( "\t" );
-	}
-	document.write( "\n" );
-}
-
-document.write( "</pre>" );
-
 </script>
 </head>
 <body>
+	<h1>DOM(Browser Object Model)</h1>
+	<h2>3. location 객체(주소창)</h2>
+	<h3>Refresh Page 하는 방법.</h3>
+	<!-- 방법1 -->
+	<!-- 기존의 주소창을 새주소창으로 변경(추천X) -->
+	<button onclick="location = location;">Refresh01</button>
+	<br>
 
+	<!-- 방법2 -->
+	<button onclick="let s = location.href; location.href = s;">Refresh02</button>
+	<br>
+
+	<!-- 방법3 -->
+	<button onclick='location.assign("");'>Refresh03</button>
+	<br>
+
+	<!-- 방법4 -->
+	<button onclick='location.replace(location);'>Refresh04</button>
+	<br>
+	
+	<!-- 방법5 -->
+	<h3>Redirect</h3>
+	<button onclick='location.href="http://www.douzone.com"'>Redirect  to  company</button>
+	
+	
+	
 </body>
 </html>
