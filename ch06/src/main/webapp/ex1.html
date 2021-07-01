@@ -10,12 +10,26 @@
 	console.log(s);
 
 	//팝업창 생성
-	setTimeout(function(){
-		var popup = window.open("popup.html", "popup", "width=600, height=400");
+	setTimeout(function(){		//window.open(url, name[새로 열릴 창의 속성 or 창의 이름지정], specs[창의 크기, 스크롤 여부 등..], replace[히스토리 목록에 새 항목을 만들지 현재 항목을 대체할지 지정
+		let popup = window.open("popup.html", "popup", "width=600, height=400");
 		
 		setTimeout(function(){
+			// popup 문서의 내용변경.
+			// 보안문제(cross domain) 때문에 같은 도메인에서만 가능
 			popup.document.write("<h1>popup text changed</h1>");	//DOM 내용이 변경된것(source 내용변경은 아님.)
 		}, 2000);
+		
+		console.log("1st timeout handler --- end");
+		
+		setTimeout(function(){
+			// 자식창 위치 이동
+			popup.moveTo(200,200);
+		},4000);
+		
+		setTimeout(function(){
+			// 자식창의 JS 실행
+			popup.message();
+		},8000);
 		
 	}, 2000);
 	
@@ -23,7 +37,7 @@
 </head>
 <body>
 	<!-- Browser에 관련된 정보들을 접근하여 나눠가지도록 함 -->
-	<h1>DOM(Browser Object Model) - window, screen, location,navigator</h1>
+	<h1>DOM(Browser Object Model) - window</h1>
 	<h2>1. Window 전역객체(Global Object)</h2>
 	<ul>
 		<li>자바스크립트가 브라우저 창(window)을 제어하기 위한 객체</li>
