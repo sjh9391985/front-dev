@@ -7,18 +7,17 @@
 <script>
 $(function(){
 	setTimeout(function(){
-		$("li:first").css("color", "red");
-		$("li:last").css("color", "blue");
-	}, 2000);
+		$("li *").css("font-weight","bold")
+	},4000)
 });
 </script>
 </head>
 <body>
-	<h1>선택자 - jQuery filter(first, last)</h1>
+	<h1>선택자 - 클래스</h1>
 	<ul>
-		<li>텍스트 텍스트 텍스트 텍스트 텍스트</li>
-		<li>텍스트 텍스트 텍스트 텍스트 텍스트</li>
-		<li>텍스트 텍스트 텍스트 텍스트 텍스트</li>
+		<li><strong>텍스트 텍스트 텍스트 텍스트 텍스트</strong></li>
+		<li><em>텍스트 텍스트 텍스트 텍스트 텍스트</em></li>
+		<li><span>텍스트 텍스트 텍스트 텍스트 텍스트</span></li>
 		<li>텍스트 텍스트 텍스트 텍스트 텍스트</li>
 	</ul>
 </body>
