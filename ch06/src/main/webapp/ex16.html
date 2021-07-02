@@ -10,14 +10,39 @@
 	
 	<= IE8          : outer-div > inner-div> header > text
 	standard others : text > header > inner-div > outer-div
-	
 */
+
+window.addEventListener("load", function(){
+	document.getElementById("outer-div").addEventListener("click",function(){
+		console.log("outer-div");
+	}),
+
+	document.getElementById("inner-div").addEventListener("click",function(e){
+		// <= IE8
+		const event = e ||window.event // <- IE8
+		
+		// prevent event's propagation
+		event.cacelBubble = true;
+		event.stopPropagation && event.stopPropagation();
+		
+		console.log("inner-div");
+	}),
+
+	document.getElementById("header").addEventListener("click",function(){
+		console.log("header");
+	}),
+	
+	document.getElementById("text").addEventListener("click",function(e){
+		e.stopPropagation();
+		console.log("text");
+	});
+});
 </script>
 </head>
 <body>
 	<h1>DOM Event 처리(Event Bubbling)</h1>
 	<div id="outer-div">
-		<div id="inner-div">
+		<div id="inner-div" style="background-color: #f00">
 			<h1 id="header">
 				<span id="text">text</span>
 			</h1>
