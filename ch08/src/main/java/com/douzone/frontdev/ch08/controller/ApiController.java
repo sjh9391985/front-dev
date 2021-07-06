@@ -4,14 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.douzone.frontdev.ch08.dto.JsonResult;
-
 @Controller
-public class HelloController {
-	
+@RequestMapping("/api")
+public class ApiController {
 	@ResponseBody
-	@RequestMapping("/hello")
-	public JsonResult hello() {
-		return JsonResult.success("hello world");
+	@RequestMapping("/text")
+	public String text(){
+		return "Text 데이터";
 	}
 }
