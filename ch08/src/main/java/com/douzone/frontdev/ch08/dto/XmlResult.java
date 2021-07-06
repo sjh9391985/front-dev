@@ -2,16 +2,18 @@ package com.douzone.frontdev.ch08.dto;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.douzone.frontdev.ch08.vo.GuestBookVo;
+
 @XmlRootElement(name="response")
 public class XmlResult {
 	private String result;  	/* "success" or "fail"  */
-	private GuestbookVo data;   /* if success, data set */
+	private GuestBookVo data;   /* if success, data set */
 	private String message; 	/* if fail, message set */
 	
 	private XmlResult() {
 	}
 
-	private XmlResult(GuestbookVo data) {
+	private XmlResult(GuestBookVo data) {
 		result = "success";
 		this.data = data; 
 	}
@@ -21,8 +23,8 @@ public class XmlResult {
 		this.message = message; 
 	}
 
-	public static XmlResult success(GuestbookVo data) {
-		return new XmlResult(data);
+	public static XmlResult success(GuestBookVo vo) {
+		return new XmlResult(vo);
 	}
 
 	public static XmlResult fail(String message) {
@@ -37,11 +39,11 @@ public class XmlResult {
 		this.result = result;
 	}
 
-	public GuestbookVo getData() {
+	public GuestBookVo getData() {
 		return data;
 	}
 
-	public void setData(GuestbookVo data) {
+	public void setData(GuestBookVo data) {
 		this.data = data;
 	}
 
@@ -54,7 +56,7 @@ public class XmlResult {
 	}
 	
 	@XmlRootElement(name="data")
-	public static class GuestbookVo {
+	public static class GuestBookVo {
 		private Long no;
 		private String name;
 		private String password;
