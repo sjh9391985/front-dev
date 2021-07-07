@@ -12,34 +12,14 @@
 <script src="${pageContext.request.contextPath }/jquery/jquery-3.6.0.js" type="text/javascript"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-/*
-var fetch= function() {
-		$("#btn-fetch").click(function(){
-				$.ajax({
-					url: "${pageContext.request.contextPath}/guestbook/api/list",
-					dataType: "json",	//받을 때 포맷
-					type: "post",		// 요청 method
-					success: function(response){
-						response.data.forEach(function(vo){
-							html = 
-							"<li data-no='"+ vo.no+ "'>"+
-								"<strong>"+ vo.name + "</strong>" +
-								"<p>"+ vo.message+ "</p>" +
-								"<strong></strong> " +
-								"<a href='' data-no='"+ vo.no+ "'>삭제</a>"+
-							"</li>";
-							$("#list-guestbook").append(html);
-					});
-				}
-			});
-		});
-	}
-*/
 
 $(function(){
 	$("#add-form").submit(function(event){
 		event.preventDefault();
-		if($("#input-name").val() == ""){
+		
+		vo ={}
+		vo.name = $("#input-name").val();
+		if(vo.name == ""){
 			//alert("이름이 비어있습니다.");
 			$("#dialog-message").dialog({
 				modal: true,
@@ -49,11 +29,32 @@ $(function(){
 					}
 				}
 			});
-			
 			return;
 		}
 		
-		//ajax
+		vo.password = $("#input-password").val();
+		
+		vo.message = $("#tx-content").val();
+		
+		//데이터 등록
+		$.ajax({
+			url: "${pageContext.request.contextPath }/guestbook/api/add",
+			dataType: "json",	//받을 때 포맷
+			type: "post",		// 요청 method
+			contentType: "application/json",	
+			data: JSON.stringify(vo),			
+			success: function(response){
+				var vo = response.data;
+				html =
+					"<li data-no='" + vo.no + "'>" + 
+						"<strong>" + vo.name + "</strong>" +
+						"<p>" + vo.message + "</p>" +
+						"<strong></strong>" + 
+						"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
+					"</li><br><br>" ;
+				$("#list-guestbook").prepend(html);	
+			}
+		});
 	})	
 });
 </script>
@@ -88,6 +89,6 @@ $(function(){
 	
 		<div id="dialog-message" title="예제" style="display:none">
   				<p>안녕하세요</p>
-			</div>		
+		</div>		
 </body>
 </html>
