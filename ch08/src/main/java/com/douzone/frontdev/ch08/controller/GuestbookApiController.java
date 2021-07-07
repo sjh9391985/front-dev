@@ -18,6 +18,25 @@ public class GuestbookApiController {
 	@RequestMapping("/list")
 	public JsonResult ex1() {
 		List<GuestBookVo> list = new ArrayList<>();
+		GuestBookVo vo3 = new GuestBookVo();
+		
+		vo3.setNo(3L);
+		vo3.setName("둘리3");
+		vo3.setMessage("호이3");
+		list.add(vo3);
+		
+		GuestBookVo vo2 = new GuestBookVo();
+		vo2.setNo(2L);
+		vo2.setName("둘리2");
+		vo2.setMessage("호이2");
+		list.add(vo2);
+		
+		GuestBookVo vo1 = new GuestBookVo();
+		vo1.setNo(1L);
+		vo1.setName("둘리1");
+		vo1.setMessage("호이1");
+		list.add(vo1);
+		
 		return JsonResult.success(list);
 	}
 }
