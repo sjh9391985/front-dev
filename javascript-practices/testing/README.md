@@ -91,12 +91,11 @@ try{             //actual     //expect
 }catch(error){
     console.error("error cause: " + error.message);
 }
-
+```
 ```
 String mode(===, !===, 객체인 경우 동일성)로 assertion을 해야한다.
     1. equals(deprecteds) -> strictEqual
     2. notEqual(deprecteds) -> strictNotEqual
     3. deepEqual(deprecteds) -> strictDeepEqual
     4. notDeepEqual(deprecteds) -> strictNotDeepEqual
-```
 ```
