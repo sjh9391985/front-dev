@@ -40,7 +40,8 @@ $(function(){
 	$(document).on("click", "#list-guestbook li a", function(event){
 		event.preventDefault();
 		let no = $(this).data("no");
-		$("hidden-no").val(no);
+		$("#hidden-no").val(no);
+		
 		deleteDialog.dialog("open");
 	});
 	
@@ -88,7 +89,6 @@ $(function(){
 	fetch();
 });
 </script>
-
 </head>
 <body>
 	<ul id="list-guestbook"></ul>

@@ -23,4 +23,15 @@ public class GuestbookTestController {
 	public String ex3() {
 		return "gb/ex3";
 	}
+	
+	//rendering 참고예제
+	@RequestMapping("/ex4")
+	public String ex4() {
+		return "gb/ex4";
+	}
+	
+	@RequestMapping("/ex5")
+	public String ex5() {
+		return "gb/ex5";
+	}
 }

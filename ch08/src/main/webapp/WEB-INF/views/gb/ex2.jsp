@@ -11,54 +11,65 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="${pageContext.request.contextPath }/jquery/jquery-3.6.0.js" type="text/javascript"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript">
 
+<script>
+var render = function(vo, mode){
+	html =
+		"<li data-no='" + vo.no + "'>" + 
+			"<strong>" + vo.name + "</strong>" +
+			"<p>" + vo.message + "</p>" +
+			"<strong></strong>" + 
+			"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
+		"</li>";
+	$("#list-guestbook")[mode ? "append" : "prepend"](html);
+}
+
+
+var listItemEJS = new EJS({
+	url: "${pageContext.request.contextPath }/ejs/listitem-template.ejs"
+});
 $(function(){
 	$("#add-form").submit(function(event){
 		event.preventDefault();
 		
-		vo ={}
+		vo = {}
+		
 		vo.name = $("#input-name").val();
-		if(vo.name == ""){
-			//alert("이름이 비어있습니다.");
+		// validation name
+		if(vo.name == "") {
+			// alert("이름이 비어 있습니다.");
 			$("#dialog-message").dialog({
 				modal: true,
 				buttons: {
 					"확인": function(){
-						$(this).dialog("close"); //예제에 나와있음. (this -> #dialog-message 가르킴.)
+						$(this).dialog("close");
 					}
-				}
+				}				
 			});
 			return;
 		}
-		
 		vo.password = $("#input-password").val();
-		
+		// validation password
 		vo.message = $("#tx-content").val();
+		// validation message
 		
-		//데이터 등록
+		// 데이터 등록
 		$.ajax({
 			url: "${pageContext.request.contextPath }/guestbook/api/add",
-			dataType: "json",	//받을 때 포맷
-			type: "post",		// 요청 method
-			contentType: "application/json",	
-			data: JSON.stringify(vo),			
+			dataType: "json",
+			type: "post",
+			contentType: "application/json",   
+			data: JSON.stringify(vo),
 			success: function(response){
-				var vo = response.data;
-				html =
-					"<li data-no='" + vo.no + "'>" + 
-						"<strong>" + vo.name + "</strong>" +
-						"<p>" + vo.message + "</p>" +
-						"<strong></strong>" + 
-						"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
-					"</li><br><br>" ;
-				$("#list-guestbook").prepend(html);	
+				//render(response.data, false);
+				var html = listItemEJS.render(response.data);
+				$("#list-guestbook").prepend(html);
 			}
-		});
-	})	
+		});		
+		
+	})
 });
 </script>
-
 </head>
 <body>
 	<div id="guestbook">
@@ -73,22 +84,19 @@ $(function(){
 			<li data-no=''><strong>지나가다가</strong>
 				<p>
 					별루입니다.<br> 비번:1234 -,.-
-				</p> <strong></strong> <a href='' data-no=''>삭제</a></li><br><br>
-
+				</p> <strong></strong> <a href='' data-no=''>삭제</a></li>
 			<li data-no=''><strong>둘리</strong>
 				<p>
 					안녕하세요<br> 홈페이지가 개 굿 입니다.
-				</p> <strong></strong> <a href='' data-no=''>삭제</a></li><br><br>
-
+				</p> <strong></strong> <a href='' data-no=''>삭제</a></li>
 			<li data-no=''><strong>주인</strong>
 				<p>
 					아작스 방명록 입니다.<br> 테스트~
-				</p> <strong></strong> <a href='' data-no=''>삭제</a></li><br><br>
+				</p> <strong></strong> <a href='' data-no=''>삭제</a></li>
 		</ul>
 	</div>
-	
-		<div id="dialog-message" title="예제" style="display:none">
-  				<p>안녕하세요</p>
-		</div>		
+	<div id="dialog-message" title="예제" style="display:none">
+  		<p>안녕하세요~</p>
+	</div>	
 </body>
 </html>

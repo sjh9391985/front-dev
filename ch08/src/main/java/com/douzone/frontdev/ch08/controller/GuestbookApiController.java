@@ -24,10 +24,11 @@ public class GuestbookApiController {
 		Long data = 0L;
 		
 		// 1. 삭제가 안된 경우
-		data = -1L;
+		 
+		//data = -1L;
 
 		// 2. 삭제가 성공한 경우
-		// data = no;
+		data = no;
 		
 		return JsonResult.success(data);
 	}
