@@ -7,13 +7,26 @@ const ex01 = function(param, callback){
         } else{
             callback(new Error('fail'))
         }
-    }, 2000);
+    }, 1000);
 }
 
-ex01('param-data1', function(err, res){
-    if(err){
-        console.log(err);
-    }else{
+
+if(require.main == module){
+
+    // test01: success
+    ex01('param-data')
+    .then(function(res){
         console.log(res);
+    })
+    
+    // test02: fail
+    ex01('param-error')
+    .catch(function(err){
+        console.error(err.message);
+    })
+    
+    console.log("waits..");
+    } else{
+        module.exports = ex01
     }
-})
+    
